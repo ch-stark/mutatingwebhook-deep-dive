@@ -11,6 +11,14 @@ https://docs.google.com/document/d/1MdchNFz9guycX__QMGxpJviPaT_MZs8iXaAFqCvoXYQ/
 
 Research:
 
+GKL website update to add Mutation -
+https://docs.google.com/document/d/14cDSFB-t5y0-2HcsZz8E9dyHlPpUb6FS5Crl1iq3Uz8/edit?usp=share_link
+2. Artifact Hub value proposition for GKL
+https://docs.google.com/document/d/1mnpTDAQueaAC5xiqx6VLl2fimb585LXKbNpw8SRjSGA/edit?usp=share_link
+Please feel free to comment / suggest any additional thoughts on these.
+
+
+
 https://github.com/open-policy-agent/gatekeeper/labels/mutation
 
 
