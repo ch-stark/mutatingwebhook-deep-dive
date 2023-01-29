@@ -85,3 +85,21 @@ spec:
         name: HTTPS_PROXY
         value: {{ .Values.mutations.podProxySettings.httpsProxy }}
 {{- end }}
+
+
+
+
+
+mutations:
+  # proxy settings
+  podProxySettings:
+    noProxy:
+    httpProxy:
+    httpsProxy:
+  # apply mutations on objects whose labels match namespace labels
+  namespaceSelectorForProxy: {}
+  # disable the following namespaces
+  excludeNamespacesFromProxy: []
+
+# Copied from gatekeeper values
+disableMutation: false
