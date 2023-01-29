@@ -1,3 +1,14 @@
 Research:
 
 https://cloud.redhat.com/blog/gatekeeper-mutations
+
+Defining Mutations
+The mutation policies are defined by means of mutation specific CRDs:
+
+AssignMetadata - defines changes to the metadata section of a resource. The metadata section is sensitive to change, and hence has more limitations than other rules. Only labels and annotations can be modified
+Assign - any change outside the metadata section
+Each mutation CRD consists of three major sections:
+
+Mutation scope - describes which resources are to be mutated
+Mutation intent - the location of the mutation and the value to be assigned
+Conditional - conditionals for performing the mutation
