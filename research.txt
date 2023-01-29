@@ -13,3 +13,13 @@ Each mutation CRD consists of three major sections:
 Mutation scope - describes which resources are to be mutated
 Mutation intent - the location of the mutation and the value to be assigned
 Conditional - conditionals for performing the mutation
+
+The match section is common to all mutators. It supports the following match criteria:
+
+scope - the scope (Namespaced | Cluster) of the mutated resource
+kinds - the resource kind, any of the elements listed
+labelSelector - filters resources by resource labels listed
+namespaces - list of allowed namespaces, only resources in listed namespaces will be mutated
+namespaceSelector - filters resources by namespace selector
+excludedNamespaces - list of excluded namespaces, resources in listed namespaces will not be mutated
+name - the name of an object. If defined, it matches against objects with the specified name. Name also supports a prefix-based glob. For example, name: pod-* matches both pod-a and pod-b.
