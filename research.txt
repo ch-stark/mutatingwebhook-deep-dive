@@ -2,6 +2,7 @@ Research:
 
 https://cloud.redhat.com/blog/gatekeeper-mutations
 https://github.com/jvossler-cogility/gatekeeper/blob/88a4cead90450c2c57a7630573bd1e48f7e12f22/website/versioned_docs/version-v3.9.x/mutation.md
+https://github.com/jvossler-cogility/gatekeeper/blob/88a4cead90450c2c57a7630573bd1e48f7e12f22/website/versioned_docs/version-v3.9.x/externaldata.md#external-data-for-gatekeeper-mutating-webhook
 
 Defining Mutations
 The mutation policies are defined by means of mutation specific CRDs:
