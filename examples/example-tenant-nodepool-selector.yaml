@@ -1,0 +1,45 @@
+apiVersion: mutations.gatekeeper.sh/v1beta1
+kind: Assign
+metadata:
+  name: example-tenant-nodepool-selector
+  namespace: gatekeeper-system
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["*"]
+        kinds: ["Pod"]
+    namespaces: ["example-tenant"]
+  location: "spec.nodeSelector"
+  parameters:
+    assign:
+      value:
+        platform.it.vt.edu/node-pool: example-pool
+---
+apiVersion: mutations.gatekeeper.sh/v1beta1
+kind: Assign
+metadata:
+  name: example-pool-nodepool-toleration
+  namespace: gatekeeper-system
+spec:
+  applyTo:
+    - groups: [""]
+      kinds: ["Pod"]
+      versions: ["v1"]
+  match:
+    scope: Namespaced
+    kinds:
+      - apiGroups: ["*"]
+        kinds: ["Pod"]
+    namespaces: ["example-tenant"]
+  location: "spec.tolerations"
+  parameters:
+    assign:
+      value:
+        - key: platform.it.vt.edu/node-pool
+          operator: "Equal"
+          value: "example-pool"
