@@ -1,0 +1,30 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: AssignMetadata
+metadata:
+  name: set-team-name
+spec:
+  match:
+    kinds:
+      - apiGroups: ["*"]
+        kinds: ["*"]
+    namespaces: ["my-namespace"]
+    scope: "Namespaced" # or "Cluster"
+    excludedNamespaces: ["some-other-ns"]
+    labelSelector:
+      matchLabels:
+        mutate: "yes"
+      matchExpressions:
+      - key: "my-label"
+        operator: "In" # or, "NotIn", "Exists", or "DoesNotExist"
+        values: ["my-value"]
+    namespaceSelector:
+      matchLabels:
+        mutate: "yes"
+      matchExpressions:
+      - key: "my-label"
+        operator: "In" # or, "NotIn", "Exists", or "DoesNotExist"
+        values: ["my-value"]
+  location: "metadata.labels.team" # must start with `metadata.labels`
+  parameters:
+    assign:
+      value: "Always" # any type can go here, not just a string
