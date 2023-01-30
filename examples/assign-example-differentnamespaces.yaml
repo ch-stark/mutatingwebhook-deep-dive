@@ -1,0 +1,31 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: AssignMetadata
+metadata:
+  name: default-namespaces
+spec:
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    namespaces: ["default","gatekeeper-system"]
+  location: "metadata.annotations.affiliation"
+  parameters:
+    assign:
+      value:  "Goa'uld"
+---
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: AssignMetadata
+metadata:
+  name: custom-namespaces
+spec:
+  match:
+    scope: Namespaced
+    kinds:
+    - apiGroups: ["*"]
+      kinds: ["Pod"]
+    namespaces: ["cilium","metallb"]
+  location: "metadata.annotations.affiliation"
+  parameters:
+    assign:
+      value:  "replicators"
