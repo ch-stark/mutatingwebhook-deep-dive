@@ -1,0 +1,52 @@
+[cstark@cstark kusto]$ cat kustomization.yaml 
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - https://github.com/open-policy-agent/gatekeeper-library/library
+
+
+[cstark@cstark kusto]$ kustomize build . | kubectl apply -f -
+I0130 13:40:23.394791  128805 request.go:645] Throttling request took 1.059478776s, request: GET:https://api.policy-grc-cp-autoclaims-66mg8.dev08.red-chesterfield.com:6443/apis/multicluster.openshift.io/v1?timeout=32s
+constrainttemplate.templates.gatekeeper.sh/k8sallowedrepos created
+constrainttemplate.templates.gatekeeper.sh/k8sblockendpointeditdefaultrole created
+constrainttemplate.templates.gatekeeper.sh/k8sblockloadbalancer created
+constrainttemplate.templates.gatekeeper.sh/k8sblocknodeport created
+constrainttemplate.templates.gatekeeper.sh/k8sblockwildcardingress created
+constrainttemplate.templates.gatekeeper.sh/k8scontainerlimits created
+constrainttemplate.templates.gatekeeper.sh/k8scontainerratios created
+constrainttemplate.templates.gatekeeper.sh/k8scontainerrequests created
+constrainttemplate.templates.gatekeeper.sh/k8sdisallowanonymous created
+constrainttemplate.templates.gatekeeper.sh/k8sdisallowedtags created
+constrainttemplate.templates.gatekeeper.sh/k8sexternalips created
+constrainttemplate.templates.gatekeeper.sh/k8shttpsonly created
+constrainttemplate.templates.gatekeeper.sh/k8simagedigests created
+constrainttemplate.templates.gatekeeper.sh/k8spoddisruptionbudget created
+constrainttemplate.templates.gatekeeper.sh/k8spspallowedusers created
+constrainttemplate.templates.gatekeeper.sh/k8spspallowprivilegeescalationcontainer created
+constrainttemplate.templates.gatekeeper.sh/k8spspapparmor created
+constrainttemplate.templates.gatekeeper.sh/k8spspautomountserviceaccounttokenpod created
+constrainttemplate.templates.gatekeeper.sh/k8spspcapabilities created
+constrainttemplate.templates.gatekeeper.sh/k8spspflexvolumes created
+constrainttemplate.templates.gatekeeper.sh/k8spspforbiddensysctls created
+constrainttemplate.templates.gatekeeper.sh/k8spspfsgroup created
+constrainttemplate.templates.gatekeeper.sh/k8spsphostfilesystem created
+constrainttemplate.templates.gatekeeper.sh/k8spsphostnamespace created
+constrainttemplate.templates.gatekeeper.sh/k8spsphostnetworkingports created
+constrainttemplate.templates.gatekeeper.sh/k8spspprivilegedcontainer created
+constrainttemplate.templates.gatekeeper.sh/k8spspprocmount created
+constrainttemplate.templates.gatekeeper.sh/k8spspreadonlyrootfilesystem created
+constrainttemplate.templates.gatekeeper.sh/k8spspseccomp created
+constrainttemplate.templates.gatekeeper.sh/k8spspselinuxv2 created
+constrainttemplate.templates.gatekeeper.sh/k8spspvolumetypes created
+constrainttemplate.templates.gatekeeper.sh/k8sreplicalimits created
+constrainttemplate.templates.gatekeeper.sh/k8srequiredannotations created
+constrainttemplate.templates.gatekeeper.sh/k8srequiredlabels created
+constrainttemplate.templates.gatekeeper.sh/k8srequiredprobes created
+constrainttemplate.templates.gatekeeper.sh/k8srequiredresources created
+constrainttemplate.templates.gatekeeper.sh/k8sstorageclass created
+constrainttemplate.templates.gatekeeper.sh/k8suniqueingresshost created
+constrainttemplate.templates.gatekeeper.sh/k8suniqueserviceselector created
+constrainttemplate.templates.gatekeeper.sh/noupdateserviceaccount created
+constrainttemplate.templates.gatekeeper.sh/verifydeprecatedapi created
+[cstark@cstark kusto]$ oc apply -f https://raw.githubusercontent.com/ch-stark/mutatingwebhook-deep-dive/main/examples/demo-sidecar.yaml^C
+
