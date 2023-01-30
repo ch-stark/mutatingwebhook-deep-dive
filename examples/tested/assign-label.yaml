@@ -1,0 +1,11 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: AssignMetadata
+metadata:
+  name: label-location
+spec:
+  match:
+    scope: Namespaced
+  location: "metadata.labels.location"
+  parameters:
+    assign:                
+      value: "europe"
