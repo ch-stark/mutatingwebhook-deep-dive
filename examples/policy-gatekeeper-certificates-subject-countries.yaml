@@ -1,0 +1,18 @@
+---
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: policy-gatekeeper-certificates-subject-countries
+spec:
+  applyTo:
+    - groups:
+      - '*'
+      kinds:
+      - Certificate
+      versions:
+      - cert-manager.io/v1
+  location: "spec.subject.countries"
+  parameters:
+    assign:
+      value:
+      - Spain
