@@ -1,0 +1,39 @@
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: always-pull-image
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    kinds: # redundant because of `applyTo`, but left in for consistency
+      - apiGroups: ["*"]
+        kinds: ["*"]
+    namespaces: ["my-namespace"]
+    scope: "Namespaced" # or "Cluster"
+    excludedNamespaces: ["some-other-ns"]
+    labelSelector:
+      matchLabels:
+        mutate: "yes"
+      matchExpressions:
+      - key: "my-label"
+        operator: "In" # or, "NotIn", "Exists", or "DoesNotExist"
+        values: ["my-value"]
+    namespaceSelector:
+      matchLabels:
+        mutate: "yes"
+      matchExpressions:
+      - key: "my-label"
+        operator: "In" # or, "NotIn", "Exists", or "DoesNotExist"
+        values: ["my-value"]
+  location: "spec.containers[name: *].imagePullPolicy"
+  parameters:
+    pathTests:
+    - subPath: 'spec.containers[name: "sidecar"]' # must be a prefix of `location`
+      condition: "MustExist" # or "MustNotExist"
+    - subPath: "spec.containers[name: *].imagePullPolicy"
+      condition: "MustNotExist"
+    assign:
+      value: "Always" # any type can go here, not just a string
