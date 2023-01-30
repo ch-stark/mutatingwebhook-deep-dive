@@ -1,0 +1,47 @@
+---
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: mutator-add-nodeaffinity-pod
+  annotations:
+    aws-eks-best-practices/description: >-
+      Adds Node affinity - https://kubernetes.io/docs/concepts/scheduling-eviction/assign-pod-node/#node-affinity
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    namespaces: ["tenants-x"]
+  location: "spec.affinity.nodeAffinity.requiredDuringSchedulingIgnoredDuringExecution.nodeSelectorTerms"
+  parameters:
+    assign:
+      value: 
+        - matchExpressions:
+          - key: "tenant"
+            operator: In
+            values:
+            - "tenants-x"
+---              
+apiVersion: mutations.gatekeeper.sh/v1alpha1
+kind: Assign
+metadata:
+  name: mutator-add-toleration-pod
+  annotations:
+    aws-eks-best-practices/description: >-
+      Adds toleration - https://kubernetes.io/docs/concepts/scheduling-eviction/taint-and-toleration/
+spec:
+  applyTo:
+  - groups: [""]
+    kinds: ["Pod"]
+    versions: ["v1"]
+  match:
+    namespaces: ["tenants-x"]
+  location: "spec.tolerations"
+  parameters:
+    assign:
+      value: 
+      - key: "tenant"
+        operator: "Equal"
+        value: "tenants-x"
+        effect: "NoSchedule"
